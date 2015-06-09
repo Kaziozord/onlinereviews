@@ -1,4 +1,15 @@
-%p= review.content
-%p
-  %b= review.rating
-  %em= review.author
+.panel.panel-default
+  .panel-heading
+    author:
+    %b
+      = review.author
+    , rating:
+    %b
+      = review.rating
+    , date:
+    %b
+      = review.created_at.strftime("%m/%d/%y")
+  .panel-body
+    = review.content
+    %br
+    %br

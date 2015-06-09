@@ -1,25 +1,60 @@
-%p#notice= notice
-%p#error= flash[:error]
+.container
+  .row
+    %div{:class => "col-md-12"}
+      %b
+        %p#notice= notice
+        %p#error= flash[:error]
 
-%p
-  %b Title:
-  = product.title
-%p
-  %b Description:
-  = product.description
-%p
-  %b Price:
-  = product.price
+  .row
+    %div{:class => "col-md-4"}
+      .panel.panel-default
+        .panel-heading.custom_class{:style => "background-color:#cccccc"}        
+          %h3
+            %b
+              = product.title
+            .small
+              product
+        .panel-body
+          %h4
+            .small
+              description:
+            = product.description
+            %br
+            %br
+            .small
+              price:
+            = product.price
+            %br
+            %br
+            .small
+              category:
+            = product.category.name
+            %br
+            %br
+            .small
+              added by:
+            = product.user.firstname + ' ' + product.user.lastname
+            - if product.user.admin?
+              (admin)
+            %br
+            %br
+            = link_to 'Back to list', category_products_path, class: 'btn btn-primary'
+            = link_to 'Edit product', edit_category_product_path(category.id, product.id), class: 'btn btn-primary'
+            %br
+            %br
+            .panel.panel-default
+              .panel-body
+                = render 'reviews/form'
 
-%p
-  %b Category
-  = product.category.name
-
-%h3 Reviews
-= render 'reviews/form'
-
-= render reviews
-
-= link_to 'Edit', edit_category_product_path(category.id, product.id)
-\|
-= link_to 'Back', category_products_path, class: 'btn btn-primary'
+    %div{:class => "col-md-8"}
+      .panel.panel-default
+        .panel-heading.custom_class{:style => "background-color:#cccccc"}
+          %h4 
+            reviews
+            .small
+              average rating:
+              = product.average_rating
+        .panel-body
+          - if product.reviews.size == 0
+            can't find any reviews of this product!
+          = render reviews

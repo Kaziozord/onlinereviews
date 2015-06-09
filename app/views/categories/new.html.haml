@@ -1,5 +1,10 @@
-%h1 New category
-
-= render 'form'
-
-= link_to 'Back', categories_path, class: 'btn btn-primary'
+.panel.panel-default
+  .panel-heading
+    .row
+      %div{:class => "col-md-3"}
+        %h3{:align => :up}
+          New category
+      %div{:class => "col-md-9", :align => :right}
+        = link_to 'Back to list', categories_path, class: 'btn btn-primary'
+  .panel-body
+    = render 'form'

@@ -1,17 +1,17 @@
 %p#notice= notice
 
-%p
-  %b Name:
-  = category.name
+.panel.panel-default
+  .panel-heading
+    .row
+      %div{:class => "col-md-3"}
+        %h3
+          %span.glyphicon.glyphicons-check
+          = category.name
+      %div{:class => "col-md-9", :align => :right}
+        = link_to 'Back to list', categories_path, class: 'btn btn-primary'
+        = link_to 'Show category', category_products_path(category), class: 'btn btn-primary'
 
-%p
-  - category.products.each do |product|
-    = product.title
-
-%p
-  %h3 New product
-  = render 'products/form'
-
-= link_to 'Edit', edit_category_path(category)
-\|
-= link_to 'Back', categories_path, class: 'btn btn-primary'
+  .panel-body
+    %p
+      products in category: 
+      = category.products.size

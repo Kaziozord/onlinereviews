@@ -5,6 +5,8 @@ class CategoriesController < ApplicationController
   expose(:category)
   expose(:product) { Product.new }
 
+  before_action :redirect, only: [:edit, :create, :update, :new, :destroy]
+
   def index
   end
 
@@ -41,7 +43,12 @@ class CategoriesController < ApplicationController
   end
 
   private
+  
     def category_params
       params.require(:category).permit(:name)
+    end
+
+    def redirect
+      redirect_to(new_user_session_path) unless user_signed_in? && current_user.admin?
     end
 end

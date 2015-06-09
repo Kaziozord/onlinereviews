@@ -9,13 +9,40 @@
     = javascript_include_tag 'application'
 
   %body
-    %nav.navbar.navbar-default
+    %nav.navbar.navbar-inverse
       .container-fluid
         .navbar-header
           %span.navbar-brand #{AppConfig.workshops_name}
-        %p.navbar-text.navbar-right
-          Links should go here
-    .container-fluid
+        %div
+          /     %a{:href => "#"} categories
+          /   %li
+          /     %a{:href => "#"} Page 1
+          /   %li
+          /     %a{:href => "#"} Page 2
+          /   %li
+          /     %a{:href => "#"} Page 3
+          %ul.nav.navbar-nav.navbar-right
+            %li
+              %a{:href => categories_path}
+                %span.glyphicon.glyphicon-home
+                Categories
+            %li
+              - if user_signed_in?
+                %a{:href => profile_path}
+                  %span.glyphicon.glyphicon-user
+                  Profile
+                %li
+                  %a{"data-method" => "delete", :href => destroy_user_session_path, :rel => "nofollow"}
+                    %span.glyphicon.glyphicon-log-out
+                    Log-out 
+              - else
+                %a{:href => new_user_session_path}
+                  %span.glyphicon.glyphicon-log-in
+                  Log-in
+          %ul.nav.navbar-nav.navbar-right
+            - if signed_in? && current_user.admin?
+              %p.small.navbar-text logged as Admin
+    .container
       .row
         .col-lg-12
           = yield

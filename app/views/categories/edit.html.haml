@@ -1,7 +1,14 @@
-%h1 Editing category
+.panel.panel-default
+  .panel-heading
+    .row
+      %div{:class => "col-md-3"}
+        %h3{:align => :up}
+          %span.glyphicon.glyphicon-edit
+          editing category:
+          = category.name
+      %div{:class => "col-md-9", :align => :right}
+        = link_to 'Back to list', categories_path, class: 'btn btn-primary'
+        = link_to 'Show category', category_products_path(category), class: 'btn btn-primary'
 
-= render 'form'
-
-= link_to 'Show', category
-\|
-= link_to 'Back', categories_path, class: 'btn btn-primary'
+  .panel-body
+    = render 'form'

@@ -1,9 +1,20 @@
-%h2 Sign in
-= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-  .form-inputs
-    = f.input :email, required: false, autofocus: true
-    = f.input :password, required: false
-    = f.input :remember_me, as: :boolean if devise_mapping.rememberable?
-  .form-actions
-    = f.button :submit, "Sign in"
-= render "devise/shared/links"
+.container
+  .col-xs-12.col-sm-6.col-sm-offset-3
+    .panel.panel-default
+      .panel-heading.custom_class{:style => "background-color:#cccccc"}
+        %h1
+          %span.glyphicon.glyphicon-log-in
+          Log-in
+      .panel-body
+        .col-xs-12.col-sm-10.col-sm-offset-1
+          %br
+          = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+            .form-inputs.form-horizontal
+              = f.input :email, required: false, autofocus: true
+              = f.input :password, required: false
+              = f.input :remember_me, as: :boolean if devise_mapping.rememberable?
+            .form-actions
+              = f.button :submit, "Sign in"
+            %br
+              
+    = render "devise/shared/links"

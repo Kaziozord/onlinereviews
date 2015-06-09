@@ -1,5 +1,10 @@
-%h1 New product
-
-= render 'form'
+.panel.panel-default
+  .panel-heading.text-center
+    .row
+      %div{:class => "col-md-3"}
+        %h3{:align => :up}
+          %h1 New product
+  .panel-body
+    = render 'form'
 
 = link_to 'Back', category_products_path
