@@ -1,0 +1,19 @@
+%h1
+  Reviews of:
+  %p
+    = product.title
+
+
+- product.reviews.each do |rev|
+  .panel.panel-default
+    .panel-heading
+      author:
+      %b
+        = User.find(rev.user_id).lastname
+      , rating:
+      %b
+        = rev.rating
+    .panel-body
+      = rev.content
+      %br
+      %br

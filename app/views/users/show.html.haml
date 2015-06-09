@@ -1,0 +1,63 @@
+.container
+  .row
+    %div{:class => "col-md-3"}
+      .panel.panel-default
+        .panel-heading
+          %h3 
+            %span.glyphicon.glyphicon-user
+            = current_user.firstname + ' ' + current_user.lastname
+            .small
+              - if current_user.admin?
+                administrator
+              - else
+                normal user
+        .panel-body
+          %h4
+            %b
+              = current_user.email
+            .small
+              e-mail adress
+            %br
+            %br
+            %b
+              = current_user.sign_in_count
+              times
+            .small
+              signed in
+            %br
+            %b
+              = current_user.last_sign_in_ip
+            .small
+              last IP
+            %br
+            %b
+              = current_user.reviews.size
+            .small
+              reviews count
+          %div{:class => "col-md-12", :align => :right}
+            = link_to 'edit user', edit_user_registration_path(current_user), class: 'btn btn-default'
+
+    %div{:class => "col-md-9"}
+      .panel.panel-default
+        .panel-heading.custom_class{:style => "background-color:#cccccc"}
+          %h2
+            .small
+              user's latest reviews
+        .panel-body
+          - last_reviews = current_user.reviews.last(5)
+          - last_reviews.each do |rev|
+            .panel.panel-default
+              .panel-heading
+                product:
+                %b
+                  = Product.find(rev.product_id).title
+                , rating:
+                %b
+                  = rev.rating
+                , date:
+                %b
+                  = rev.created_at.strftime("%m/%d/%y")
+              .panel-body
+                = rev.content
+                %br
+                %br
