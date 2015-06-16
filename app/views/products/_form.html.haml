@@ -1,19 +1,39 @@
+
 = form_for [category, product] do |f|
-  - if product.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(product.errors.count, "error")} prohibited this product from being saved:"
-      %ul
-        - product.errors.full_messages.each do |msg|
-          %li= msg
+  .col-xs-12.col-sm-10.col-sm-offset-1
+    - if product.errors.any?
+      #error_explanation  
+        %h1= "#{pluralize(product.errors.count, "error")} prohibited this product from being saved:"
+        %ul
+          - product.errors.full_messages.each do |msg|
+            %li= msg
+    %br
+    .form-group
+      = f.label :title
+      = f.text_field :title, class: 'form-control'
+    %br
+    .form-group
+      = f.label :description
+      = f.text_area :description, class: 'form-control'
+    %br
+    .form-group
+      = f.label :price
+      = f.text_field :price, class: 'form-control'
+    %br
+    = f.submit 'Save product', class: 'btn btn-default'
+    %br
+    %br
 
-  .form-group
-    = f.label :title
-    = f.text_field :title, class: 'form-control'
-  .form-group
-    = f.label :description
-    = f.text_area :description, class: 'form-control'
-  .form-group
-    = f.label :price
-    = f.text_field :price, class: 'form-control'
-
-  = f.submit 'Save product', class: 'btn btn-danger'
+/ %br
+/ %br
+/ %form.form-horizontal{:role => "form"}
+/   .form-group
+/     %label.col-sm-3.control-label{:for => "title"} title
+/     .col-sm-9
+/       %input#inputProduct.form-control{:placeholder => "product's title", :type => "title"}/
+/       / %p.help-block enter title of your new product
+/   .form-group
+/     %label.col-sm-3.control-label{:for => "description"} description
+/     .col-sm-9
+/       %input#inputDescription.form-control{:placeholder => "description", :type => "description"}/
+/   %button.btn.btn-default{:type => "submit"} Create User

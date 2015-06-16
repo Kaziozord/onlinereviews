@@ -1,10 +1,17 @@
-.panel.panel-default
-  .panel-heading.text-center
-    .row
-      %div{:class => "col-md-3"}
-        %h3{:align => :up}
-          %h1 New product
-  .panel-body
-    = render 'form'
-
-= link_to 'Back', category_products_path
+.col-xs-12.col-sm-8.col-sm-offset-2
+  .panel.panel-default
+    .panel-heading.panel-heading-new
+      .row
+        %div{:class => "col-md-12"}
+          %h3
+            %span.glyphicon.glyphicon-plus
+            New product
+            .small
+              category:
+              = category.name
+            
+    .panel-body
+      = render 'products/form'
+  = link_to 'Back to list', category_products_path, class: 'btn btn-default'
+  .div
+    %br

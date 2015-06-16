@@ -1,48 +1,54 @@
-.panel.panel-default
-  .panel-heading
-    .row
-      %div{:class => "col-md-3"}
-        %h3{:align => :up}
-          %span.glyphicon.glyphicon-list-alt
-          = category.name
-      %div{:class => "col-md-9", :align => :right}
-        = link_to 'All categories', categories_path, class: 'btn btn-primary'
-        = link_to 'Edit category', edit_category_path(category), class: 'btn btn-primary'
-        = link_to 'New product', new_category_product_path(category), class: 'btn btn-success'
-  .table-responsible
-    %table.table.table-hover
-      %thread
-        %tr
-          %th Name
-          %th Description
-          %th Rating
-          %th Price
-          %th Actions
-          %th
-          %th
-      %tbody
-        - category.products.each do |product|
+.container
+  .panel.panel-default
+    .panel-heading.panel-heading-list
+      .row
+        %div{:class => "col-md-3"}
+          %h3{:align => :up}
+            %span.glyphicon.glyphicon-list-alt
+            = category.name
+            .small
+              products from category
+        %div{:class => "col-md-9", :align => :right}
+          = link_to 'All categories', categories_path, class: 'btn btn-primary'
+          = link_to 'Edit category', edit_category_path(category), class: 'btn btn-primary'
+          = link_to 'New product', new_category_product_path(category), class: 'btn btn-success'
+    .table-responsible
+      %table.table.table-hover
+        %thead
           %tr
-          %td= product.title
-          %td= product.description
-          %td= product.average_rating
-          %td= product.price
-          %td= link_to 'Show', category_product_path(product.category, product)
-          - if signed_in?
-            - if current_user.id == product.user_id || current_user.admin?
-              %td= link_to 'Edit', edit_category_product_path(product.category, product)
-              %td= link_to 'Delete', category_product_path(product.category, product), method: :delete, data: { confirm: 'Are you sure?' }
-            - else
-              %td
-              %td
-.panel.panel-default
-  .panel-heading.custom_class{:style => "background-color:#d0f0d0"}
-    .row
-      %div{:class => "col-md-3"}
-        %h3{:align => :up}
-          %h3 
-            %span.glyphicon.glyphicon-plus
-            New product
-            
-  .panel-body
-    = render 'products/form'
+            %th Name
+            %th Description
+            %th Rating
+            %th Price
+            %th Actions
+            %th
+            %th
+        %tbody
+          - category.products.each do |product|
+            %tr
+            %td= product.title
+            %td= product.description
+            %td= product.average_rating
+            %td= product.price
+            %td= link_to 'Show', category_product_path(product.category, product)
+            - if signed_in?
+              - if current_user.id == product.user_id || current_user.admin?
+                %td= link_to 'Edit', edit_category_product_path(product.category, product)
+                %td= link_to 'Delete', category_product_path(product.category, product), method: :delete, data: { confirm: 'Are you sure?' }
+              - else
+                %td
+                %td
+  .panel.panel-default
+    .panel-heading.panel-heading-new
+      .row
+        %div{:class => "col-md-3"}
+          %h3
+            %h3 
+              %span.glyphicon.glyphicon-plus
+              New product
+              .small
+                category:
+                = category.name
+              
+    .panel-body
+      = render 'products/form'

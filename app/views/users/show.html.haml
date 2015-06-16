@@ -2,7 +2,7 @@
   .row
     %div{:class => "col-md-3"}
       .panel.panel-default
-        .panel-heading
+        .panel-heading.panel-heading-profile
           %h3 
             %span.glyphicon.glyphicon-user
             = current_user.firstname + ' ' + current_user.lastname
@@ -13,33 +13,35 @@
                 normal user
         .panel-body
           %h4
-            %b
-              = current_user.email
-            .small
-              e-mail adress
-            %br
-            %br
+            .div
+              %b
+                = current_user.email
+              .small
+                e-mail adress
             %b
               = current_user.sign_in_count
               times
             .small
               signed in
-            %br
             %b
               = current_user.last_sign_in_ip
             .small
               last IP
-            %br
             %b
               = current_user.reviews.size
             .small
-              reviews count
-          %div{:class => "col-md-12", :align => :right}
-            = link_to 'edit user', edit_user_registration_path(current_user), class: 'btn btn-default'
+              reviews
+            %b
+              = current_user.products.size
+            .small
+              products
+            %div{:class => "col-md-12", :align => :right}
+              = link_to 'edit user', edit_user_registration_path(current_user), class: 'btn btn-default'
+
 
     %div{:class => "col-md-9"}
       .panel.panel-default
-        .panel-heading.custom_class{:style => "background-color:#cccccc"}
+        .panel-heading.panel-heading-review
           %h2
             .small
               user's latest reviews
@@ -50,7 +52,10 @@
               .panel-heading
                 product:
                 %b
-                  = Product.find(rev.product_id).title
+                  - if rev.product != nil
+                    = rev.product.title
+                  - else  
+                    product deleted
                 , rating:
                 %b
                   = rev.rating

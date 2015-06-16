@@ -6,7 +6,7 @@
 
 - product.reviews.each do |rev|
   .panel.panel-default
-    .panel-heading
+    .panel-heading.panel-heading-review
       author:
       %b
         = User.find(rev.user_id).lastname
