@@ -27,7 +27,7 @@ Rails.application.configure do
     password: "JPNZ1234"
   }
 
-  config.action_mailer.default_url_options = { host: "localhost:3000" }
+  config.action_mailer.default_url_options = { host: "http://onlinereviews.herokuapp.com" }
 
   # Enable Rack::Cache to put a simple HTTP cache in front of your application
   # Add `rack-cache` to your Gemfile before enabling this.
