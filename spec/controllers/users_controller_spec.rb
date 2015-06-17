@@ -1,14 +1,11 @@
 require 'spec_helper'
 
 describe UsersController do
-	user = User.create(firstname: "James", lastname: "Brown", email: "getup@turn.it")
+	let(:user) { FactoryGirl.create(:user,	email: 'janszpan@jp.pl') }
 
 	context 'user signed in' do
 		before do
-      sign_in user
-      controller.stub(:user_signed_in?).and_return(true)
-      controller.stub(:current_user).and_return(user)
-      controller.stub(:authenticate_user!).and_return(user)
+      expect(controller).to receive(:authenticate_user!).and_return(user)
     end
 
     describe 'GET show' do

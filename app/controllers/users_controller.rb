@@ -5,7 +5,7 @@ before_filter :authenticate_user!
     @user = current_user
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html
       format.xml { render :xml => @user }
     end
   end
