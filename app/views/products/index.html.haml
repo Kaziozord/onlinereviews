@@ -9,35 +9,36 @@
             .small
               products from category
         %div{:class => "col-md-9", :align => :right}
-          = link_to 'All categories', categories_path, class: 'btn btn-primary'
-          = link_to 'Edit category', edit_category_path(category), class: 'btn btn-primary'
-          = link_to 'New product', new_category_product_path(category), class: 'btn btn-success'
-    .table-responsible
-      %table.table.table-hover
-        %thead
-          %tr
-            %th Name
-            %th Description
-            %th Rating
-            %th Price
-            %th Actions
-            %th
-            %th
-        %tbody
-          - category.products.each do |product|
+          = link_to 'All categories', categories_path, class: 'btn btn-default'
+          = link_to 'Edit category', edit_category_path(category), class: 'btn btn-default'
+          = link_to 'New product', new_category_product_path(category), class: 'btn btn-default'
+    .panel-body.panel-list
+      .table-responsible
+        %table.table.table-hover
+          %thead
             %tr
-            %td= product.title
-            %td= product.description
-            %td= product.average_rating
-            %td= product.price
-            %td= link_to 'Show', category_product_path(product.category, product)
-            - if signed_in?
-              - if current_user.id == product.user_id || current_user.admin?
-                %td= link_to 'Edit', edit_category_product_path(product.category, product)
-                %td= link_to 'Delete', category_product_path(product.category, product), method: :delete, data: { confirm: 'Are you sure?' }
-              - else
-                %td
-                %td
+              %th Name
+              %th Description
+              %th Rating
+              %th Price
+              %th Actions
+              %th
+              %th
+          %tbody
+            - category.products.each do |product|
+              %tr
+              %td= product.title
+              %td= product.description
+              %td= product.average_rating
+              %td= product.price
+              %td= link_to 'Show', category_product_path(product.category, product)
+              - if signed_in?
+                - if current_user.id == product.user_id || current_user.admin?
+                  %td= link_to 'Edit', edit_category_product_path(product.category, product)
+                  %td= link_to 'Delete', category_product_path(product.category, product), method: :delete, data: { confirm: 'Are you sure?' }
+                - else
+                  %td
+                  %td
   .panel.panel-default
     .panel-heading.panel-heading-new
       .row

@@ -7,27 +7,28 @@
           all categories
       %div{:class => "col-md-9", :align => :right}
         = link_to 'New Category', new_category_path, class: 'btn btn-success'
-  .table-responsible
-    %table.table.table-hover
-      %thead
-        %tr
-          %th Name
-          %th Products
-          %th
-          %th
-          %th
-      %tbody
-        - categories.each do |category|
+  .panel-body.panel-list
+    .table-responsible
+      %table.table.table-hover
+        %thead
           %tr
-            %td= category.name
-            %td= category.products.size
-            %td= link_to 'Show', category_products_path(category)
-            - if user_signed_in?
-              %td= link_to 'Edit', edit_category_path(category)
-              %td= link_to 'Delete', category, method: :delete, data: { confirm: 'Are you sure?' }
-            - else
-              %td
-              %td
+            %th Name
+            %th Products
+            %th Actions
+            %th
+            %th
+        %tbody
+          - categories.each do |category|
+            %tr
+              %td= category.name
+              %td= category.products.size
+              %td= link_to 'Show', category_products_path(category)
+              - if user_signed_in?
+                %td= link_to 'Edit', edit_category_path(category)
+                %td= link_to 'Delete', category, method: :delete, data: { confirm: 'Are you sure?' }
+              - else
+                %td
+                %td
 / = link_to 'New Category', new_category_path, class: 'btn btn-primary'
 %br
 
