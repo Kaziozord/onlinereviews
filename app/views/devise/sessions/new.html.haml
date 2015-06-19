@@ -6,20 +6,17 @@
           %span.glyphicon.glyphicon-log-in
           Log-in
       .panel-body
-        %br
-          = simple_form_for(resource, as: resource_name, url: session_path(resource_name), wrapper: :horizontal_input_group) do |f|
-            .col-xs-12.col-sm-10.col-sm-offset-1
-              .form-inputs
-                / = f.input :firstname, :placeholder => "Test"#, wrapper: :horizontal
-                / = f.input :email, :input_html => { :class => "span3" }, :hint => "just letters and numbers please."
+        = simple_form_for(resource, as: resource_name, url: session_path(resource_name), wrapper: :horizontal_input_group) do |f|
+          .col-xs-12.col-sm-10.col-sm-offset-1
+            .form-inputs
+              %span.row
                 = f.input :email, required: false, autofocus: true
-                %br
-                %br
+              %span.row
                 = f.input :password, required: false
-                %br
+              %span
                 = f.input :remember_me, as: :boolean if devise_mapping.rememberable?              
-              .form-actions
-                = f.button :submit, "Sign in"
-                or    
-                = render "devise/shared/links"
-              %br
+            .form-actions
+              = f.button :submit, "Sign in"
+              or    
+              = render "devise/shared/links"
+            %br

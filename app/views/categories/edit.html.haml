@@ -7,8 +7,7 @@
           editing category:
           = category.name
       %div{:class => "col-md-9", :align => :right}
-        = link_to 'Back to list', categories_path, class: 'btn btn-primary'
-        = link_to 'Show category', category_products_path(category), class: 'btn btn-primary'
+        = link_to 'Show category', category_products_path(category), class: 'btn btn-default'
 
   .panel-body
     = render 'form'

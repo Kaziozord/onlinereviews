@@ -7,7 +7,7 @@
           editing product:
           = product.title
       %div{:class => "col-md-9", :align => :right}
-        = link_to 'Back to products', category_products_path(category), class: 'btn btn-primary'
-        = link_to 'Show product', category_product_path(category, product), class: 'btn btn-primary'
+        = link_to 'Back to products', category_products_path(category), class: 'btn btn-default'
+        = link_to 'Show product', category_product_path(category, product), class: 'btn btn-default'
   .panel-body      
     = render 'form'

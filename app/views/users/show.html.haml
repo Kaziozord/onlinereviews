@@ -12,40 +12,40 @@
               - else
                 normal user
         .panel-body
-          %h4
-            .div
-              %b
+          .clearfix
+            %h4
+              .div
                 = current_user.email
-              .small
-                e-mail adress
-            %b
-              = current_user.sign_in_count
-              times
-            .small
-              signed in
-            %b
-              = current_user.last_sign_in_ip
-            .small
-              last IP
-            %b
-              = current_user.reviews.size
-            .small
-              reviews
-            %b
-              = current_user.products.size
-            .small
-              products
-            %div{:class => "col-md-12", :align => :right}
-              = link_to 'edit user', edit_user_registration_path(current_user), class: 'btn btn-default'
+                .small  
+                  e-mail address
+              %p              
+                = current_user.sign_in_count
+                times
+                .small
+                  signed in
+              %p
+                = current_user.last_sign_in_ip
+                .small
+                  last IP
+              %p
+                = current_user.reviews.size
+                .small
+                  reviews
+              %p
+                = current_user.products.size
+                .small
+                  products
+              %div{:class => "col-md-12", :align => :right}
+                = link_to 'edit User', edit_user_registration_path(current_user), class: 'btn btn-default'
 
 
     %div{:class => "col-md-9"}
       .panel.panel-default
         .panel-heading.panel-heading-review
-          %h2
-            .small
+          %h4
+            .text-center
               user's latest reviews
-        .panel-body
+        .panel-body.panel-list
           - last_reviews = current_user.reviews.last(5)
           - last_reviews.each do |rev|
             .panel.panel-default

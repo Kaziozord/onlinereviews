@@ -5,30 +5,25 @@
         %h3
           %span.glyphicon.glyphicon-edit
           Edit #{resource_name.to_s.humanize}
-      .panel-body
+      .panel-body 
         = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }, wrapper: :horizontal_input_group) do |f|
           = f.error_notification
           .form-inputs
-            = f.input :email, required: true, autofocus: true
+            .row
+              = f.input :email, required: true, autofocus: true
             - if devise_mapping.confirmable? && resource.pending_reconfirmation?
               %p
                 Currently waiting confirmation for: #{resource.unconfirmed_email}
-            %br
-            %br
-            = f.input :password, autocomplete: "off", hint: "leave it blank if you don't want to change it", required: false
-            %br
-            %br
-            = f.input :password_confirmation, required: false
-            %br
-            %br
-            %br
-            = f.input :current_password, hint: "we need your current password to confirm your changes", required: true
+            .row
+              = f.input :password, autocomplete: "off", hint: "leave it blank if you don't want to change it", required: false
+            .row
+              = f.input :password_confirmation, required: false, label: "Confirm password"
+            .row
+              = f.input :current_password, hint: "we need your current password to confirm your changes", required: true
           .form-actions
-            %br
-            %br
             = f.button :submit, "Update"
         %hr
         %h3 Cancel my account
         %p
-          Unhappy? #{link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete}
+          Unhappy? #{link_to "Cancel my account", registration_path(resource_name), data: { confirm: "This action will delete your account, are you sure?" }, method: :delete}
         = link_to "Back", :back

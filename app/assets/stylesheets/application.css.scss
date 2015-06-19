@@ -9,6 +9,7 @@ body {
 
 h2 {
   text-align: center;
+  text-color: #000000;
 }
 
 horizontal {
@@ -55,6 +56,11 @@ profile-header {
 
 .panel-default > .panel-list {
     background: #dddddd;
+}
+
+p {
+  margin-top: 1em;
+  margin-bottom: 0em;
 }
 
 table {

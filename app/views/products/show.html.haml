@@ -19,29 +19,24 @@
             .small
               description:
             = product.description
-            %br
-            %br
-            .small
-              price:
-            = product.price
-            %br
-            %br
-            .small
-              category:
-            = product.category.name
-            %br
-            %br
-            .small
-              added by:
-            = product.user.firstname + ' ' + product.user.lastname
-            - if product.user.admin?
-              (admin)
-            %br
-            %br
-            = link_to 'Back to list', category_products_path, class: 'btn btn-primary'
-            = link_to 'Edit product', edit_category_product_path(category.id, product.id), class: 'btn btn-primary'
-            %br
-            %br
+            %p
+              .small
+                price:
+              = product.price
+            %p
+              .small
+                category:
+              = product.category.name
+            %p
+              .small
+                added by:
+              = product.user.firstname + ' ' + product.user.lastname
+              - if product.user.admin?
+                (admin)
+            %p
+              = link_to 'Back to category', category_products_path, class: 'btn btn-default'
+              = link_to 'Edit product', edit_category_product_path(category.id, product.id), class: 'btn btn-default'
+            %hr
             .panel.panel-default
               .panel-body
                 = render 'reviews/form'
@@ -54,7 +49,7 @@
             .small
               average rating:
               = product.average_rating
-        .panel-body
+        .panel-body.panel-list
           - if product.reviews.size == 0
             can't find any reviews of this product!
           = render reviews
