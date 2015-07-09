@@ -7,8 +7,8 @@ class Product < ActiveRecord::Base
   validates_format_of :price, :with => /^\d+\.?\d{0,2}$/, :multiline => true
 
   def average_rating
-    rating_sum = reviews.map(&:rating).sum
+    rating_sum = reviews.sum(:rating)
 
-    (rating_sum.to_f / reviews.size).round(2)
+    (rating_sum.to_f / reviews.count).round(2)
   end
 end
